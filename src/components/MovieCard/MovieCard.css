@@ -1,0 +1,31 @@
+.movie-card {
+  height: 25rem;
+  width: 15rem;
+  
+  box-sizing: border-box;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.movie-title {
+  flex-wrap: nowrap;
+}
+
+.movie-card > * {
+  margin: 0;
+}
+
+.movie-poster {
+  width: inherit;
+}
+
+.tomatillo {
+  background: url('../src/assets/tomatillo.svg') no-repeat;
+}
+
+.movie-rating {
+  margin-left: 100%;
+}
