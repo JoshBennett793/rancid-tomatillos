@@ -1,8 +1,7 @@
 import MovieCard from '../MovieCard/MovieCard.jsx'
 
 export default function AllMovies(props) {
-  const { movies } = props
-  console.log(movies)
+  const { movies, selectSingleMovie } = props
 
   const movieCards = movies.map(movie => {
     return (
@@ -11,6 +10,7 @@ export default function AllMovies(props) {
         posterPath={movie.poster_path}
         rating={movie.average_rating}
         release={movie.release_date}
+        selectSingleMovie={selectSingleMovie}
       />
     )
   })
