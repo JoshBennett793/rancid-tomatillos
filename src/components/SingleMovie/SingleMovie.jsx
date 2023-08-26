@@ -13,10 +13,10 @@ export default function SingleMovie(props) {
       <h2 className='single-movie-title'>{singleMovie.title}</h2>
       <div className='tomatillo'>
         <span className='single-movie-rating'>
-          {singleMovie.average_rating.toFixed(1)}
+          {singleMovie.average_rating.toFixed(1)} Tomatillos
         </span>
       </div>
-      <p>{singleMovie.release_date}</p>
+      <p className='single-movie-release'>Release Date:{singleMovie.release_date}</p>
       <button className='return-all-movies' onClick={() => returnAllMovies()}>
         ALL MOVIES
       </button>
