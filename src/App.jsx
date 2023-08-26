@@ -20,11 +20,14 @@ export default function App() {
 
   return (
     <>
-      <SingleMovie
-        singleMovie={singleMovie}
-        returnAllMovies={returnAllMovies}
-      />
-      <AllMovies movies={movies} selectSingleMovie={selectSingleMovie}/>
+      {singleMovie ? (
+        <SingleMovie
+          singleMovie={singleMovie}
+          returnAllMovies={returnAllMovies}
+        />
+      ) : (
+        <AllMovies movies={movies} selectSingleMovie={selectSingleMovie} />
+      )}
     </>
   )
 }
