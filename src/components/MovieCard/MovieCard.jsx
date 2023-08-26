@@ -1,15 +1,15 @@
 import './MovieCard.css'
 
 export default function MovieCard(props) {
+  const { id, posterPath, title, rating, selectSingleMovie } = props
+  
   return (
-    <article className='movie-card' key={props.id}>
-      <img className='movie-poster' src={props.posterPath} alt={props.title} />
-      <h2 className='movie-title'>{props.title}</h2>
+    <article className='movie-card' key={id} onClick={() => selectSingleMovie(id)}>
+      <img className='movie-poster' src={posterPath} alt={title} />
+      <h2 className='movie-title'>{title}</h2>
       <div className='tomatillo'>
-        <span className='movie-rating'>{props.rating.toFixed(1)}</span>
+        <span className='movie-rating'>{rating.toFixed(1)}</span>
       </div>
-      {/* <img src='../src/assets/tomatillo.svg' alt='Tomatillo Rating Icon' />
-      <p className='movie-rating'></p> */}
     </article>
   )
 }

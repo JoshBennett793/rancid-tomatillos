@@ -6,6 +6,8 @@ export default function AllMovies(props) {
   const movieCards = movies.map(movie => {
     return (
       <MovieCard
+        id={movie.id}
+        key={movie.id}
         title={movie.title}
         posterPath={movie.poster_path}
         rating={movie.average_rating}
