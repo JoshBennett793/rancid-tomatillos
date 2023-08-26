@@ -1,7 +1,7 @@
 import './SingleMovie.css'
 
 export default function SingleMovie(props) {
-    const { singleMovie } = props
+    const { singleMovie, returnAllMovies } = props
 
     return (
       <article className='single-movie' key={singleMovie.id}>
@@ -17,7 +17,7 @@ export default function SingleMovie(props) {
           </span>
         </div>
         <p>{singleMovie.release_date}</p>
-        <button className='return-all-movies'>ALL MOVIES</button>
+        <button className='return-all-movies' onClick={() => returnAllMovies()}>ALL MOVIES</button>
       </article>
     )
 }
