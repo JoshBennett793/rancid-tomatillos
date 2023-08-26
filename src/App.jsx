@@ -6,23 +6,23 @@ import SingleMovie from './components/SingleMovie/SingleMovie'
 
 export default function App() {
   const [movies, setMovies] = useState(movieData.movies)
-  const [singleMovie, setSingleMovie] = useState(false)
+  const [selectedSingleMovie, setSelectedSingleMovie] = useState(null)
 
   const selectSingleMovie = id => {
     const selectedMovie = movies.find(movie => movie.id === id)
 
-    return setSingleMovie(selectedMovie)
+    setSelectedSingleMovie(selectedMovie)
   }
 
   const returnAllMovies = () => {
-    setSingleMovie(false)
+    setSelectedSingleMovie(null)
   }
 
   return (
     <>
-      {singleMovie ? (
+      {selectedSingleMovie ? (
         <SingleMovie
-          singleMovie={singleMovie}
+          selectedSingleMovie={selectedSingleMovie}
           returnAllMovies={returnAllMovies}
         />
       ) : (
