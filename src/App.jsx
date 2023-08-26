@@ -11,7 +11,7 @@ export default function App() {
   const selectSingleMovie = id => {
     const selectedMovie = movies.find(movie => movie.id === id)
 
-    return selectSingleMovie(selectedMovie)
+    return setSingleMovie(selectedMovie)
   }
 
   const returnAllMovies = () => {
