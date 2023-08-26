@@ -14,9 +14,13 @@ export default function App() {
     return selectSingleMovie(selectedMovie)
   }
 
+  const returnAllMovies = () => {
+    setSingleMovie(false)
+  }
+
   return (
     <>
-      <SingleMovie singleMovie={singleMovie} />
+      <SingleMovie singleMovie={singleMovie} returnAllMovies={returnAllMovies}/>
       <AllMovies movies={movies} />
     </>
   )
