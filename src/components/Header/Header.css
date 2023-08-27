@@ -1,4 +1,4 @@
-.header-container {
+.header {
     display: flex;
     align-items: center;
 
@@ -8,7 +8,7 @@
     height: 100px;
   }
 
-h1 {
+.header h1 {
     display: flex;
     padding-left: 5px;
 }

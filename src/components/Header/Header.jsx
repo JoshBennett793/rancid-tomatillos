@@ -1,14 +1,16 @@
 import './Header.css'
 
-export default function Nav() {
+export default function Header() {
   return (
-    <header className='header-container'>
-      <img
-        className='tomatillo-logo'
-        src='../src/assets/tomatillo.svg'
-        alt='tomatillo logo'
-      />
-      <h1>Rancid Tomatillos</h1>
-    </header>
+    <div>
+      <header className='header'>
+        <img
+          className='tomatillo-logo'
+          src='../src/assets/tomatillo.svg'
+          alt='tomatillo logo'
+        />
+        <h1>Rancid Tomatillos</h1>
+      </header>
+    </div>
   )
 }
