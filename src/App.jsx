@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import AllMovies from './components/AllMovies/AllMovies'
 import SingleMovie from './components/SingleMovie/SingleMovie'
-import Nav from './components/Nav/Nav'
+import Header from './components/Header/Header'
 
 
 export default function App() {
@@ -44,7 +44,7 @@ export default function App() {
 
   return (
     <>
-      <Nav/>
+      <Header/>
       {selectedSingleMovie ? (
         <SingleMovie
           selectedSingleMovie={selectedSingleMovie}
