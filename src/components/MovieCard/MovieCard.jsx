@@ -1,11 +1,32 @@
+import { useState } from 'react'
 import './MovieCard.css'
 
-export default function MovieCard(props) {
-  const { id, posterPath, title, rating, selectSingleMovie } = props
+export default function MovieCard({
+  id,
+  posterPath,
+  title,
+  rating,
+  selectSingleMovie
+}) {
+  const [imageUrl, setImageUrl] = useState(posterPath)
+  const fallbackImageUrl = '../src/assets/image-not-found.jpg'
+
+  function setFallbackUrl() {
+    setImageUrl(fallbackImageUrl)
+  }
 
   return (
-    <article className='movie-card' key={id} onClick={() => selectSingleMovie(id)}>
-      <img className='movie-poster' src={posterPath} alt={`Movie poster for ${title}`}/>
+    <article
+      className='movie-card'
+      key={id}
+      onClick={() => selectSingleMovie(id)}
+    >
+      <img
+        className='movie-poster'
+        src={imageUrl}
+        alt={`Movie poster for ${title}`}
+        onError={setFallbackUrl}
+      />
       <h2 className='movie-title'>{title}</h2>
       <div className='tomatillo'>
         <span className='movie-rating'>{rating.toFixed(1)}</span>
