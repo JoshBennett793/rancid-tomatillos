@@ -1,7 +1,30 @@
 .single-movie{
     display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    padding-left: 5px;
+}
+
+.movie-details-container{
+    display: flex;
     flex-direction: column;
-    align-items: center;
+    width: 40vw;
+    height: 100%;
+}
+
+.movie-details{
+    display: flex;
+    flex-direction: column;
+    height: 34em;
+}
+
+.button-container{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
 }
 
 .single-movie-poster{
@@ -12,19 +35,18 @@
 
 .single-movie-title{
     margin: 2px;
+    font-size: 3em;
 }
 
-.tomatillo{
+.tomatillo-single-movie{
     background: url('../src/assets/tomatillo.svg') no-repeat;
-    margin: 2px;
-    margin-left: 8px;
-    width: 13%;
+    width: 50%;
 
     display: flex;
 }
 
 .single-movie-rating{
-    margin-left: 18%;
+    margin-left: 11%;
 }
 
 .single-movie-release{
@@ -33,4 +55,5 @@
 
 .return-all-movies {
     cursor: pointer;
+    width: 15em;
 }
