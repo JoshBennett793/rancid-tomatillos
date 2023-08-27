@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import { useState } from 'react'
 import './MovieCard.css'
 
@@ -33,4 +34,12 @@ export default function MovieCard({
       </div>
     </article>
   )
+}
+
+MovieCard.propTypes = {
+  id: PropTypes.number.isRequired,
+  posterPath: PropTypes.string,
+  title: PropTypes.string.isRequired,
+  rating: PropTypes.number.isRequired,
+  selectSingleMovie: PropTypes.func.isRequired
 }

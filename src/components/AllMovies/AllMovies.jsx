@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import MovieCard from '../MovieCard/MovieCard.jsx'
 import './AllMovies.css'
 
@@ -17,4 +18,9 @@ export default function AllMovies({ movies, selectSingleMovie }) {
   })
 
   return <main className='all-movies-container'>{movieCards}</main>
+}
+
+AllMovies.propTypes = {
+  movies: PropTypes.array.isRequired,
+  selectSingleMovie: PropTypes.func.isRequired
 }
