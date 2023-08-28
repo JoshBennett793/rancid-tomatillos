@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import AllMovies from './components/AllMovies/AllMovies'
 import SingleMovie from './components/SingleMovie/SingleMovie'
+import Header from './components/Header/Header'
+
 
 export default function App() {
   const [movies, setMovies] = useState([])
@@ -42,6 +44,7 @@ export default function App() {
 
   return (
     <>
+      <Header/>
       {selectedSingleMovie ? (
         <SingleMovie
           selectedSingleMovie={selectedSingleMovie}
