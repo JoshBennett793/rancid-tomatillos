@@ -14,6 +14,17 @@
   -webkit-text-size-adjust: 100%;
 }
 
+body {
+  margin: 0px;
+}
+
+.error-msg {
+  width: 100%;
+  margin-top: 10%;
+  font-size: 1.3rem;
+  text-align: center;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
@@ -27,6 +38,3 @@
   }
 }
 
-body {
-  margin: 0px;
-}
