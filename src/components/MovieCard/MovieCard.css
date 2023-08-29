@@ -22,6 +22,7 @@
 
 .movie-poster {
   width: inherit;
+  border-radius: 8px;
 }
 
 .tomatillo {

@@ -1,37 +1,23 @@
 import { useState, useEffect } from 'react'
+import { fetchMovieData, fetchSingleMovie } from './api-calls'
+import Header from './components/Header/Header'
 import AllMovies from './components/AllMovies/AllMovies'
 import SingleMovie from './components/SingleMovie/SingleMovie'
-import Header from './components/Header/Header'
-
 
 export default function App() {
   const [movies, setMovies] = useState([])
   const [selectedSingleMovie, setSelectedSingleMovie] = useState(null)
-  const [error, setError] = useState(null)
+  const [errorMsg, setErrorMsg] = useState(null)
 
-  const fetchMovieData = async () => {
-    const url = 'https://rancid-tomatillos.herokuapp.com/api/v2/movies'
-    try {
-      const response = await fetch(url)
+  const selectSingleMovie = async id => {
+    const data = await fetchSingleMovie(id)
 
-      if (response.status === 500) {
-        throw new Error(
-          'There seems to be a problem. Please try refreshing your browser.'
-        )
-      }
-
-      const data = await response.json()
-
-      setMovies(data.movies)
-    } catch (error) {
-      setError(error)
+    if (data.name !== 'Error') {
+      setSelectedSingleMovie(data.movie)
+      return
+    } else {
+      setErrorMsg(data.message)
     }
-  }
-
-  const selectSingleMovie = id => {
-    const selectedMovie = movies.find(movie => movie.id === id)
-
-    setSelectedSingleMovie(selectedMovie)
   }
 
   const returnAllMovies = () => {
@@ -39,19 +25,29 @@ export default function App() {
   }
 
   useEffect(() => {
-    fetchMovieData()
+    const fetchData = async () => {
+      const data = await fetchMovieData()
+
+      if (data.name !== 'Error') {
+        setMovies(data.movies)
+      } else {
+        setErrorMsg(data.message)
+      }
+    }
+
+    fetchData()
   }, [])
 
   return (
     <>
-      <Header/>
+      <Header />
       {selectedSingleMovie ? (
         <SingleMovie
           selectedSingleMovie={selectedSingleMovie}
           returnAllMovies={returnAllMovies}
         />
-      ) : error ? (
-        error
+      ) : errorMsg ? (
+        <p className='error-msg'>{errorMsg}</p>
       ) : (
         <AllMovies movies={movies} selectSingleMovie={selectSingleMovie} />
       )}
