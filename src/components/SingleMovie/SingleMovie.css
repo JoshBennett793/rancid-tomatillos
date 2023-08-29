@@ -1,36 +1,100 @@
-.single-movie{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.single-movie-poster{
-    display: flex;
-    height: 40vw;
-    width: auto;
-}
-
-.single-movie-title{
-    margin: 2px;
-}
-
-.tomatillo{
-    background: url('../src/assets/tomatillo.svg') no-repeat;
-    margin: 2px;
-    margin-left: 8px;
-    width: 13%;
-
-    display: flex;
-}
-
-.single-movie-rating{
-    margin-left: 18%;
-}
-
-.single-movie-release{
-    margin: 4px;
+.single-movie {
+  display: flex;
 }
 
 .return-all-movies {
-    cursor: pointer;
+  position: absolute;
+  /* Offset same as poster margin */
+  left: 4rem;
+  top: 120px;
+  cursor: pointer;
+  width: fit-content;
+  background: transparent;
+  border: none;
+  font-size: 1.3rem;
+}
+
+.poster-trailer-btn-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.trailer-button {
+  margin-top: 28px;
+  margin-left: 140px;
+}
+
+.single-movie-data {
+  min-width: 400px;
+  margin: 4rem 2rem 0 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.single-movie-poster {
+  margin: 4rem;
+  margin-bottom: 0;
+  height: 450px;
+  border-radius: 8px;
+}
+
+.single-movie-backdrop {
+  min-height: 100%;
+  min-width: 1024px;
+
+  width: 100%;
+  height: auto;
+
+  opacity: 0.3;
+  
+  position: absolute;
+  /* Offset at height of header */
+  top: 100px;
+  left: 0;
+  
+  z-index: -1;
+}
+
+.overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 100px;
+  left: 0;
+
+  z-index: -1;
+  background-color: rgba(64, 0, 0, 0.463);
+}
+
+.single-movie-title {
+  margin: 2px;
+}
+
+.tomatillo-rating {
+  background: url('../src/assets/tomatillo.svg') no-repeat;
+
+  display: flex;
+}
+
+.single-movie-rating {
+  margin-left: 35px;
+}
+
+.title-and-date {
+  display: flex;
+  align-items: center;
+}
+
+.title-and-date h2 {
+  font-size: 2rem;
+}
+
+.title-and-date span {
+  font-size: 1.6rem;
+}
+
+.trailer-button {
+  height: 40px;
+  width: fit-content;
+  font-size: 1rem;
 }
