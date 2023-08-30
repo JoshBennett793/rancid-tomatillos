@@ -19,7 +19,6 @@ export default function AllMovies({ movies }) {
     )
   })
 
-  console.log(movieCards)
   return <main className='all-movies-container'>{movieCards}</main>
 }
 
