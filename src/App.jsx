@@ -1,28 +1,13 @@
 import { useState, useEffect } from 'react'
-import { fetchMovieData, fetchSingleMovie } from './api-calls'
+import { fetchMovieData } from './api-calls'
+import { Routes, Route } from 'react-router-dom'
 import Header from './components/Header/Header'
 import AllMovies from './components/AllMovies/AllMovies'
 import SingleMovie from './components/SingleMovie/SingleMovie'
 
 export default function App() {
   const [movies, setMovies] = useState([])
-  const [selectedSingleMovie, setSelectedSingleMovie] = useState(null)
   const [errorMsg, setErrorMsg] = useState(null)
-
-  const selectSingleMovie = async id => {
-    const data = await fetchSingleMovie(id)
-
-    if (data.name !== 'Error') {
-      setSelectedSingleMovie(data.movie)
-      return
-    } else {
-      setErrorMsg(data.message)
-    }
-  }
-
-  const returnAllMovies = () => {
-    setSelectedSingleMovie(null)
-  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -39,18 +24,12 @@ export default function App() {
   }, [])
 
   return (
-    <>
+   <>
       <Header />
-      {selectedSingleMovie ? (
-        <SingleMovie
-          selectedSingleMovie={selectedSingleMovie}
-          returnAllMovies={returnAllMovies}
-        />
-      ) : errorMsg ? (
-        <p className='error-msg'>{errorMsg}</p>
-      ) : (
-        <AllMovies movies={movies} selectSingleMovie={selectSingleMovie} />
-      )}
-    </>
+      <Routes>
+        <Route path='/' element={errorMsg ? (<p className='error-msg'>{errorMsg}</p>) : (<AllMovies movies={movies}/>)}/>
+        <Route path='/movie/:id' element={<SingleMovie />}/>
+      </Routes>
+  </> 
   )
 }
