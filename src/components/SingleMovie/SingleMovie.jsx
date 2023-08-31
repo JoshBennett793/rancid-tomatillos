@@ -1,99 +1,113 @@
 import './SingleMovie.css'
-// import PropTypes from 'prop-types'
 import { fetchSingleMovie } from '../../api-calls'
 import { useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import Loader from '../../Loader/loader'
 
 export default function SingleMovie() {
-  const { id } = useParams() // Get the id from the route params
-  const [selectedSingleMovie, setSelectedSingleMovie] = useState({})
-  const [movieID, setMovieID] = useState(id) // Initialize movieID with the id from useParams
-  const [dataArrived, setDataArrived] = useState(false)
-  const [errorMsg, setErrorMsg] = useState('')
-  const [releaseDate, setReleaseDate] = useState('')
-  const [avgRating, setAvgRating] = useState(0)
-  const [genres, setGenres] = useState('')
-  const [budget, setBudget] = useState('')
-  const [revenue, setRevenue] = useState('')
+  const { id } = useParams()
+  const [movieData, setMovieData] = useState({
+    selectedSingleMovie: {},
+    movieID: id,
+    dataArrived: false,
+    errorMsg: '',
+    releaseDate: '',
+    avgRating: 0,
+    genres: '',
+    budget: '',
+    revenue: ''
+  })
+
+  const updateState = (key, value) => {
+    setMovieData(prevMovieData => {
+      return {
+        ...prevMovieData,
+        [key]: value
+      }
+    })
+  }
 
   const selectSingleMovie = async id => {
     const data = await fetchSingleMovie(id)
     if (data.name !== 'Error') {
-      setSelectedSingleMovie(data.movie)
-      setDataArrived(true)
+      updateState('selectedSingleMovie', data.movie)
+      updateState('dataArrived', true)
     } else {
-      setErrorMsg(data.message)
+      updateState('errorMsg', data.message)
     }
   }
 
   useEffect(() => {
-    setMovieID(id) // Update movieID when the route param changes
-  }, [id]) // Add id as a dependency to react to route changes
+    updateState('movieID', id)
+  }, [id])
 
   useEffect(() => {
-    selectSingleMovie(movieID)
-  }, [movieID]) // runs when movieID is updated in above useEffect
+    selectSingleMovie(movieData.movieID)
+  }, [movieData.movieID])
 
   useEffect(() => {
-    // check if state variable contains data
-    if (selectedSingleMovie.id) {
-      setReleaseDate(
-        selectedSingleMovie.release_date
+    if (movieData.selectedSingleMovie.id) {
+      const formattedReleaseDate = movieData.selectedSingleMovie.release_date
           .slice(5)
-          .concat('/', selectedSingleMovie.release_date.slice(0, 4))
+          .concat('/', movieData.selectedSingleMovie.release_date.slice(0, 4))
           .replaceAll('-', '/')
-      )
-      setAvgRating(selectedSingleMovie.average_rating.toFixed(1))
-      setGenres(selectedSingleMovie.genres.join(', '))
-      setBudget(selectedSingleMovie.budget.toLocaleString())
-      setRevenue(selectedSingleMovie.revenue.toLocaleString())
+      const formattedAvgRating = movieData.selectedSingleMovie.average_rating.toFixed(1)
+      const formattedGenres = movieData.selectedSingleMovie.genres.join(', ')
+      const formattedBudget = movieData.selectedSingleMovie.budget.toLocaleString()
+      const formattedRevenue = movieData.selectedSingleMovie.revenue.toLocaleString()
+
+      updateState('releaseDate', formattedReleaseDate)
+      updateState('avgRating', formattedAvgRating)
+      updateState('genres', formattedGenres)
+      updateState('budget', formattedBudget)
+      updateState('revenue', formattedRevenue)
     }
-  }, [selectedSingleMovie]) // allows for state to update first before setting corresponding data
+  }, [movieData.selectedSingleMovie])
 
   return (
     <>
-      {!dataArrived ? (
+      {!movieData.dataArrived && movieData.errorMsg ? ( 
+        <p className='error-msg'>{movieData.errorMsg}</p>
+      ) : !movieData.dataArrived ? (
         <Loader />
       ) : (
-        <article className='single-movie' key={selectedSingleMovie.id}>
+        <article className='single-movie' key={movieData.selectedSingleMovie.id}>
           <div className='poster-trailer-container'>
             <img
               className='single-movie-poster'
-              src={selectedSingleMovie.poster_path}
-              alt={`Movie poster for ${selectedSingleMovie.title}`}
+              src={movieData.selectedSingleMovie.poster_path}
+              alt={`Movie poster for ${movieData.selectedSingleMovie.title}`}
             />
-            <button className='trailer-button'>▶ &nbsp; Watch Trailer</button>
           </div>
           <div className='single-movie-data'>
             <div className='overlay'></div>
             <img
               className='single-movie-backdrop'
-              src={selectedSingleMovie.backdrop_path}
-              alt={`Movie backdrop image for ${selectedSingleMovie.title}`}
+              src={movieData.selectedSingleMovie.backdrop_path}
+              alt={`Movie backdrop image for ${movieData.selectedSingleMovie.title}`}
             />
             <div className='title-and-date'>
               <h2 className='single-movie-title'>
-                {selectedSingleMovie.title}
+                {movieData.selectedSingleMovie.title}
               </h2>
-              <span>({releaseDate.slice(-4)})</span>
+              <span>({movieData.releaseDate.slice(-4)})</span>
             </div>
             <div className='tomatillo-rating'>
               <span className='single-movie-rating'>
-                {avgRating} Tomatillos
+                {movieData.avgRating} Tomatillos
               </span>
             </div>
             <p>
-              {releaseDate} • {genres} • {selectedSingleMovie.runtime} mins
+              {movieData.releaseDate} • {movieData.genres} • {movieData.selectedSingleMovie.runtime} mins
             </p>
-            <span>{selectedSingleMovie.tagline}</span>
+            <span>{movieData.selectedSingleMovie.tagline}</span>
             <h3>Overview</h3>
-            <p>{selectedSingleMovie.overview}</p>
+            <p>{movieData.selectedSingleMovie.overview}</p>
             <div className='single-movie-meta-data'>
               <p>
-                <strong>Budget</strong>: ${budget}
+                <strong>Budget</strong>: ${movieData.budget}
               </p>
-              <p>Revenue: ${revenue}</p>
+              <p>Revenue: ${movieData.revenue}</p>
             </div>
           </div>
         </article>

@@ -46,12 +46,12 @@
   height: auto;
 
   opacity: 0.3;
-  
+
   position: absolute;
   /* Offset at height of header */
   top: 100px;
   left: 0;
-  
+
   z-index: -1;
 }
 
@@ -97,4 +97,10 @@
   height: 40px;
   width: fit-content;
   font-size: 1rem;
+}
+
+.error-msg {
+  width: 100%;
+  text-align: center;
+  margin-top: 5%;
 }
