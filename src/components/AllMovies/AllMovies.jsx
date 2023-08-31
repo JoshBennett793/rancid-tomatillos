@@ -1,10 +1,12 @@
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import MovieCard from '../MovieCard/MovieCard.jsx'
 import './AllMovies.css'
 
-export default function AllMovies({ movies, selectSingleMovie }) {
+export default function AllMovies({ movies }) {
   const movieCards = movies.map(movie => {
     return (
+    <Link to={`movie/${movie.id}`} key={movie.id}>
       <MovieCard
         key={movie.id}
         id={movie.id}
@@ -12,8 +14,8 @@ export default function AllMovies({ movies, selectSingleMovie }) {
         posterPath={movie.poster_path}
         rating={movie.average_rating}
         release={movie.release_date}
-        selectSingleMovie={selectSingleMovie}
       />
+      </Link>
     )
   })
 
@@ -22,5 +24,4 @@ export default function AllMovies({ movies, selectSingleMovie }) {
 
 AllMovies.propTypes = {
   movies: PropTypes.array.isRequired,
-  selectSingleMovie: PropTypes.func.isRequired
 }

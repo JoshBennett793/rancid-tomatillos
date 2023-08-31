@@ -34,3 +34,13 @@ export const fetchSingleMovie = async id => {
     return error
   }
 }
+
+
+
+
+
+
+
+
+
+
