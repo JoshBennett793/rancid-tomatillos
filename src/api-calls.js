@@ -5,7 +5,7 @@ export const fetchMovieData = async () => {
 
     if (!response.ok) {
       throw new Error(
-        'There seems to be a problem. Please try refreshing your browser.'
+        'There seems to be a problem with your request. Please try again.'
       )
     }
     const data = await response.json()
@@ -24,7 +24,7 @@ export const fetchSingleMovie = async id => {
 
     if (!response.ok) {
       throw new Error(
-        'There seems to be a problem. Please try refreshing your browser.'
+        'There seems to be a problem with your request. Please try again.'
       )
     }
     const data = await response.json()
