@@ -40,6 +40,7 @@
 
 .single-movie-backdrop {
   min-height: 100%;
+  /* stop shrinking at approx. iPad width */
   min-width: 1024px;
 
   width: 100%;
@@ -93,14 +94,10 @@
   font-size: 1.6rem;
 }
 
-.trailer-button {
-  height: 40px;
-  width: fit-content;
-  font-size: 1rem;
-}
-
 .error-msg {
   width: 100%;
   text-align: center;
   margin-top: 5%;
 }
+
+@media only screen and (max-width: 1024px)
