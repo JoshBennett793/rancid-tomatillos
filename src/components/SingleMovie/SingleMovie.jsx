@@ -1,6 +1,7 @@
 import './SingleMovie.css'
 import { fetchSingleMovie } from '../../api-calls'
 import { useParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import Loader from '../../Loader/loader'
 
@@ -48,13 +49,16 @@ export default function SingleMovie() {
   useEffect(() => {
     if (movieData.selectedSingleMovie.id) {
       const formattedReleaseDate = movieData.selectedSingleMovie.release_date
-          .slice(5)
-          .concat('/', movieData.selectedSingleMovie.release_date.slice(0, 4))
-          .replaceAll('-', '/')
-      const formattedAvgRating = movieData.selectedSingleMovie.average_rating.toFixed(1)
+        .slice(5)
+        .concat('/', movieData.selectedSingleMovie.release_date.slice(0, 4))
+        .replaceAll('-', '/')
+      const formattedAvgRating =
+        movieData.selectedSingleMovie.average_rating.toFixed(1)
       const formattedGenres = movieData.selectedSingleMovie.genres.join(', ')
-      const formattedBudget = movieData.selectedSingleMovie.budget.toLocaleString()
-      const formattedRevenue = movieData.selectedSingleMovie.revenue.toLocaleString()
+      const formattedBudget =
+        movieData.selectedSingleMovie.budget.toLocaleString()
+      const formattedRevenue =
+        movieData.selectedSingleMovie.revenue.toLocaleString()
 
       updateState('releaseDate', formattedReleaseDate)
       updateState('avgRating', formattedAvgRating)
@@ -66,12 +70,18 @@ export default function SingleMovie() {
 
   return (
     <>
-      {!movieData.dataArrived && movieData.errorMsg ? ( 
+      {!movieData.dataArrived && movieData.errorMsg ? (
         <p className='error-msg'>{movieData.errorMsg}</p>
       ) : !movieData.dataArrived ? (
         <Loader />
       ) : (
-        <article className='single-movie' key={movieData.selectedSingleMovie.id}>
+        <article
+          className='single-movie'
+          key={movieData.selectedSingleMovie.id}
+        >
+          <Link to={`/`}>
+            <button className='return-all-movies'>⮐ &nbsp; Return</button>
+          </Link>
           <div className='poster-trailer-container'>
             <img
               className='single-movie-poster'
@@ -98,7 +108,8 @@ export default function SingleMovie() {
               </span>
             </div>
             <p>
-              {movieData.releaseDate} • {movieData.genres} • {movieData.selectedSingleMovie.runtime} mins
+              {movieData.releaseDate} • {movieData.genres} •{' '}
+              {movieData.selectedSingleMovie.runtime} mins
             </p>
             <span>{movieData.selectedSingleMovie.tagline}</span>
             <h3>Overview</h3>

@@ -4,10 +4,12 @@ import './MovieCard.css'
 
 export default function MovieCard({ id, posterPath, title, rating }) {
   const [imageUrl, setImageUrl] = useState(posterPath)
+  const [altText, setAltText] = useState(`Movie poster for ${title}`)
   const fallbackImageUrl = '../src/assets/image-not-found.jpg'
 
   function setFallbackUrl() {
     setImageUrl(fallbackImageUrl)
+    setAltText('Image not found.')
   }
 
   return (
@@ -15,7 +17,7 @@ export default function MovieCard({ id, posterPath, title, rating }) {
         <img
           className='movie-poster'
           src={imageUrl}
-          alt={`Movie poster for ${title}`}
+          alt={altText}
           onError={setFallbackUrl}
         />
         <h2 className='movie-title'>{title}</h2>

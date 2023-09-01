@@ -27,5 +27,13 @@ export default function AllMovies({ movies }) {
 }
 
 AllMovies.propTypes = {
-  movies: PropTypes.array.isRequired
+  movies: PropTypes.arrayOf(
+    PropTypes.shape({
+      "id": PropTypes.number.isRequired,
+      "title": PropTypes.string.isRequired,
+      "poster_path": PropTypes.string.isRequired,
+      "average_rating": PropTypes.number.isRequired,
+      "release_date": PropTypes.string.isRequired,
+    })
+  ).isRequired
 }
