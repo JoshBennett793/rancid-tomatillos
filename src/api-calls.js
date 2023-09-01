@@ -3,7 +3,7 @@ export const fetchMovieData = async () => {
   try {
     const response = await fetch(url)
 
-    if (response.status === 500) {
+    if (!response.ok) {
       throw new Error(
         'There seems to be a problem. Please try refreshing your browser.'
       )
@@ -22,7 +22,7 @@ export const fetchSingleMovie = async id => {
   try {
     const response = await fetch(url)
 
-    if (response.status === 500) {
+    if (!response.ok) {
       throw new Error(
         'There seems to be a problem. Please try refreshing your browser.'
       )
@@ -34,13 +34,3 @@ export const fetchSingleMovie = async id => {
     return error
   }
 }
-
-
-
-
-
-
-
-
-
-
