@@ -1,0 +1,12 @@
+.url-error {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.url-error-img{
+    display: flex;
+    width: 550px;
+    height: auto;
+}
+
