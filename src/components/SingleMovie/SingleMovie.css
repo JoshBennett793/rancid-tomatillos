@@ -19,11 +19,6 @@
   flex-direction: column;
 }
 
-.trailer-button {
-  margin-top: 28px;
-  margin-left: 140px;
-}
-
 .single-movie-data {
   min-width: 400px;
   margin: 4rem 2rem 0 0;
@@ -100,4 +95,12 @@
   margin-top: 5%;
 }
 
-@media only screen and (max-width: 1024px)
+@media only screen and (max-width: 1024px) {
+  .single-movie-poster {
+    display: none;
+  }
+
+  .single-movie-data {
+    padding: 0 4rem;
+  }
+}
