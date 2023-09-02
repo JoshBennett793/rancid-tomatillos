@@ -82,13 +82,11 @@ export default function SingleMovie() {
           <Link to={`/`}>
             <button className='return-all-movies'>⮐ &nbsp; Return</button>
           </Link>
-          <div className='poster-trailer-container'>
-            <img
-              className='single-movie-poster'
-              src={movieData.selectedSingleMovie.poster_path}
-              alt={`Movie poster for ${movieData.selectedSingleMovie.title}`}
-            />
-          </div>
+          <img
+            className='single-movie-poster'
+            src={movieData.selectedSingleMovie.poster_path}
+            alt={`Movie poster for ${movieData.selectedSingleMovie.title}`}
+          />
           <div className='single-movie-data'>
             <div className='overlay'></div>
             <img
@@ -111,14 +109,24 @@ export default function SingleMovie() {
               {movieData.releaseDate} • {movieData.genres} •{' '}
               {movieData.selectedSingleMovie.runtime} mins
             </p>
-            <span>{movieData.selectedSingleMovie.tagline}</span>
+            <span>
+              <em>{movieData.selectedSingleMovie.tagline}</em>
+            </span>
             <h3>Overview</h3>
             <p>{movieData.selectedSingleMovie.overview}</p>
             <div className='single-movie-meta-data'>
               <p>
-                <strong>Budget</strong>: ${movieData.budget}
+                <strong>Budget</strong>:{' '}
+                {`${movieData.budget}` === '0'
+                  ? 'Data not reported'
+                  : `$${movieData.budget}`}
               </p>
-              <p>Revenue: ${movieData.revenue}</p>
+              <p>
+                <strong>Revenue</strong>:{' '}
+                {`${movieData.revenue}` === '0'
+                  ? 'Data not reported'
+                  : `$${movieData.revenue}`}
+              </p>
             </div>
           </div>
         </article>

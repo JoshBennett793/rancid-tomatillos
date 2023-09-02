@@ -14,18 +14,8 @@
   font-size: 1.3rem;
 }
 
-.poster-trailer-btn-container {
-  display: flex;
-  flex-direction: column;
-}
-
-.trailer-button {
-  margin-top: 28px;
-  margin-left: 140px;
-}
-
 .single-movie-data {
-  min-width: 400px;
+  min-width: 320px;
   margin: 4rem 2rem 0 0;
   display: flex;
   flex-direction: column;
@@ -39,25 +29,26 @@
 }
 
 .single-movie-backdrop {
-  min-height: 100%;
-  min-width: 1024px;
+  margin: auto;
+  position: fixed;
+  top: 100px;
+  left: 0;
+  overflow: hidden;
 
-  width: 100%;
-  height: auto;
+  min-height: 100%;
+  max-width: 100%;
 
   opacity: 0.3;
 
-  position: absolute;
   /* Offset at height of header */
-  top: 100px;
-  left: 0;
+  /* top: 100px; */
 
   z-index: -1;
 }
 
 .overlay {
   width: 100%;
-  height: 100%;
+  min-height: calc(100% - 100px);
   position: absolute;
   top: 100px;
   left: 0;
@@ -93,14 +84,67 @@
   font-size: 1.6rem;
 }
 
-.trailer-button {
-  height: 40px;
-  width: fit-content;
-  font-size: 1rem;
-}
-
 .error-msg {
   width: 100%;
   text-align: center;
   margin-top: 5%;
+}
+
+@media only screen and (max-width: 1024px) {
+  .single-movie-poster {
+    display: none;
+  }
+
+  .single-movie-data {
+    padding: 0 4rem;
+    gap: 10px;
+  }
+
+  .single-movie-backdrop {
+    min-width: 150%;
+  }
+}
+
+@media only screen and (max-width: 440px) {
+  .single-movie {
+    min-height: 100vh;
+    background: url('../src/assets/film.jpg');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+
+  .single-movie-data {
+    padding-left: 0.5rem;
+    padding-right: 4rem;
+    min-height: 100%;
+    color: black;
+    background-color: rgba(255, 255, 255, 0.282);
+  }
+
+  .single-movie-backdrop {
+    visibility: hidden;
+  }
+
+  .return-btn-link {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+  }
+
+  .return-all-movies {
+    color: black;
+    left: 0.5em;
+  }
+
+  .overlay {
+    visibility: hidden;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .single-movie-backdrop {
+    visibility: hidden;
+  }
 }
