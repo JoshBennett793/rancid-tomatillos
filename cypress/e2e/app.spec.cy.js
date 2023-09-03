@@ -47,8 +47,8 @@ describe('', () => {
   it('Should display error message with a 500 level error', () => {
     cy.intercept('GET', 'https://rancid-tomatillos.herokuapp.com/api/v2/movies', {
       statusCode: 500})
-      .get('.error-msg').contains('There seems to be a problem. Please try refreshing your browser.')
-    })
+      .get('.error-msg').contains('p', 'There seems to be a problem with your request. Please try again.')    
+  })
 
     it('Should display URL error page with a 404 level error', () => {
       cy.visit('http://localhost:5173/nonsense')

@@ -16,18 +16,7 @@ describe('Single movie details view', () => {
     )
   }
 
-  const stubBrokenMoviePoster = (id, code, fixtureFile) => {
-    cy.intercept(
-      'GET',
-      `https://rancid-tomatillos.herokuapp.com/api/v2/movies/${id}`,
-      {
-        statusCode: code,
-        fixture: fixtureFile
-      }
-    )
-  }
-
-  beforeEach(() => {
+beforeEach(() => {
     cy.intercept(
       'GET',
       'https://rancid-tomatillos.herokuapp.com/api/v2/movies',
@@ -39,9 +28,9 @@ describe('Single movie details view', () => {
     cy.visit('http://localhost:5173/')
   })
 
-  it('Should select a movie and see a page with that movie\'s details', () => {
+  it("Should select a movie and see a page with that movie's details", () => {
     stubSingleMovieFetch(blackAdamId, 200, blackAdamFile)
-    
+
     cy.get('.all-movies-container')
       .contains('.movie-card', 'Black Adam')
       .click()
@@ -54,10 +43,12 @@ describe('Single movie details view', () => {
       .get('.single-movie-data')
       .should('contain', 'Overview')
       .get('.single-movie-meta-data')
-      .should('contain', 'Budget')
+      .contains('Budget: $200,000,000')
+      .get('.single-movie-meta-data')
+      .contains('Revenue: $384,571,691')
   })
 
-  it('Should select a different movie and see a page with that movie\'s details', () => {
+  it("Should select a different movie and see a page with that movie's details", () => {
     stubSingleMovieFetch(theWomanKingId, 200, theWomanKingFile)
 
     cy.get('.all-movies-container')
@@ -72,15 +63,15 @@ describe('Single movie details view', () => {
       .get('.single-movie-data')
       .should('contain', 'Overview')
       .get('.single-movie-meta-data')
-      .should('contain', 'Budget')
+      .contains('Data not reported')
+      .get('.single-movie-meta-data')
+      .contains('Data not reported')
   })
 
   it('Should be able select movie and then return to all movies page', () => {
     stubSingleMovieFetch(theWomanKingId, 200, theWomanKingFile)
 
-    cy.get('.movie-card')
-      .contains('The Woman King')
-      .click()
+    cy.get('.movie-card').contains('The Woman King').click()
 
     cy.url()
       .should('eq', 'http://localhost:5173/movie/724495')
@@ -100,8 +91,8 @@ describe('Single movie details view', () => {
     )
       .get('.error-msg')
       .contains(
-        'There seems to be a problem. Please try refreshing your browser.'
+        'p',
+        'There seems to be a problem with your request. Please try again.'
       )
   })
-
 })
