@@ -4,7 +4,7 @@ import { Routes, Route } from 'react-router-dom'
 import Header from './components/Header/Header'
 import AllMovies from './components/AllMovies/AllMovies'
 import SingleMovie from './components/SingleMovie/SingleMovie'
-import UrlError from './components/URLerror/urlError'
+import UrlError from './components/UrlError/urlError'
 
 export default function App() {
   const [movies, setMovies] = useState([])

@@ -47,20 +47,20 @@ describe('', () => {
   it('Should display error message with a 500 level error', () => {
     cy.intercept('GET', 'https://rancid-tomatillos.herokuapp.com/api/v2/movies', {
       statusCode: 500})
-      .get('.error-msg').contains('There seems to be a problem. Please try refreshing your browser.')
+      .get('.error-msg').contains('p', 'There seems to be a problem with your request. Please try again.')
     })
 
-    it('Should display URL error page with a 404 level error', () => {
-      cy.visit('http://localhost:5173/nonsense')
-        .get('.url-error')
-        .contains('h2', 'Oops! This page does not exist. Please return home.')
-        .get('.url-error-img[alt="dog holding popcorn"]')
+   it('Should display URL error page with a 404 level error', () => {
+     cy.visit('http://localhost:5173/nonsense')
+       .get('.url-error')
+       .contains('h2', 'Oops! This page does not exist. Please return home.')
+       .get('.url-error-img[alt="dog holding popcorn"]')
 
-        .get('.return-all-movies')
-        .click()
+       .get('.return-all-movies')
+       .click()
 
-      cy.url().should('eq', 'http://localhost:5173/')
-      })
+     cy.url().should('eq', 'http://localhost:5173/')
+     })
 
   it('Should display placeholder image if movie does not have poster', () => {
     stubBrokenMoviePoster(200, blackAdamBrokenFile)

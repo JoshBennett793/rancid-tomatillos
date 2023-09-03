@@ -16,17 +16,6 @@ describe('Single movie details view', () => {
     )
   }
 
-  const stubBrokenMoviePoster = (id, code, fixtureFile) => {
-    cy.intercept(
-      'GET',
-      `https://rancid-tomatillos.herokuapp.com/api/v2/movies/${id}`,
-      {
-        statusCode: code,
-        fixture: fixtureFile
-      }
-    )
-  }
-
   beforeEach(() => {
     cy.intercept(
       'GET',
@@ -54,7 +43,9 @@ describe('Single movie details view', () => {
       .get('.single-movie-data')
       .should('contain', 'Overview')
       .get('.single-movie-meta-data')
-      .should('contain', 'Budget')
+      .contains('Budget: $200,000,000')
+      .get('.single-movie-meta-data')
+      .contains('Revenue: $384,571,691')
   })
 
   it('Should select a different movie and see a page with that movie\'s details', () => {
@@ -72,7 +63,11 @@ describe('Single movie details view', () => {
       .get('.single-movie-data')
       .should('contain', 'Overview')
       .get('.single-movie-meta-data')
-      .should('contain', 'Budget')
+      .contains('Data not reported')
+      .get('.single-movie-meta-data')
+      .contains('Data not reported')
+      
+      
   })
 
   it('Should be able select movie and then return to all movies page', () => {
@@ -100,7 +95,7 @@ describe('Single movie details view', () => {
     )
       .get('.error-msg')
       .contains(
-        'There seems to be a problem. Please try refreshing your browser.'
+        'There seems to be a problem with your request. Please try again.'
       )
   })
 
