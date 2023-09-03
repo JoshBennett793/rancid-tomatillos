@@ -14,5 +14,8 @@
 }
 
 .tomatillo-logo {
-  width: 2em;
+  height: 50%;
+  width: 3rem;
+  margin-left: 2%;
+  background: url('../../assets/tomatillo.svg') no-repeat;
 }
