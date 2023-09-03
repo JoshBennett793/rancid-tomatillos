@@ -3,7 +3,7 @@ import { fetchSingleMovie } from '../../api-calls'
 import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
-import Loader from '../../Loader/loader'
+import Loader from '../../Loader/Loader'
 
 export default function SingleMovie() {
   const { id } = useParams()
