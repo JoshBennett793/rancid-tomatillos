@@ -31,7 +31,7 @@
 }
 
 .tomatillo {
-  background: url('../src/assets/tomatillo.svg') no-repeat;
+  background: url('../../assets/tomatillo.svg') no-repeat;
 }
 
 .movie-rating {
